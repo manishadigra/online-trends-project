@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumer Insights Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Consumer Insights and Investment Analysis</h1>
+    </header>
+
+    <main>
+        <section id="filters">
+            <h2>Data Overview</h2>
+            <select id="region-select">
+                <option value="">Select Region</option>
+            </select>
+            <select id="category-select">
+                <option value="">Select Category</option>
+            </select>
+            <!-- --- MISSING DROPDOWNS RE-ADDED HERE --- -->
+            <select id="platform-select">
+                <option value="">Select Platform</option>
+            </select>
+            <select id="service-type-select">
+                <option value="">Select Service Type</option>
+            </select>
+            <!-- --- END RE-ADDED DROPDOWNS --- -->
+            <button id="apply-filters">Apply Filters</button>
+        </section>
+
+        <section id="data-display">
+            <h2>Top Trends</h2>
+            <div class="chart-container">
+                <canvas id="topKeywordsChart"></canvas>
+            </div>
+            
+            <h2 style="margin-top: 30px;">Trends Over Time</h2>
+            <div id="historical-filters">
+                <select id="trend-keyword-select">
+                    <option value="">Select Keyword for Trend</option>
+                </select>
+                <select id="trend-region-select">
+                    <option value="">Select Region for Trend</option>
+                </select>
+                <button id="show-trend-button">Show Trend</button>
+            </div>
+            <div class="chart-container">
+                <canvas id="historicalTrendsChart"></canvas>
+            </div>
+
+            <h2 style="margin-top: 30px;">Raw Data Table</h2>
+            <button id="toggleRawDataButton" style="margin-bottom: 15px;">Show Raw Data</button>
+            
+            <div id="rawDataContainer" style="display: none;">
+                <table id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Keyword</th>
+                            <th>Region</th>
+                            <th>Score</th>
+                            <th>Category</th>
+                            <th>Platform</th>
+                            <th>Source</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="investment-insights">
+            <h2>Investment Analysis & Key Insights</h2>
+            
+            <div class="insight-item">
+                <h3>1. Strong Consumer Demand for Premium Electronics (e.g., iPhone 15 Flipkart)</h3>
+                <p><strong>Insight:</strong> Our data consistently shows high search interest for premium electronics like 'iPhone 15 Flipkart' across major Indian metropolitan areas (e.g., Delhi, Mumbai, Bengaluru) and even in Tier-1/Tier-2 cities like Chandigarh, Goa, and Haryana. This indicates robust consumer demand and purchasing power for high-value items via e-commerce platforms.</p>
+                <p><strong>Investment Implication:</strong> This suggests a stable and growing market for investments in companies focused on premium electronics distribution, logistics for high-value goods, or specialized e-commerce services catering to this segment. Opportunities may also exist in financing solutions or extended warranty services for such purchases.</p>
+            </div>
+
+            <div class="insight-item">
+                <h3>2. Emerging Potential in Hyper-Local Niche Services (e.g., Local Artisanal Coffee App)</h3>
+                <p><strong>Insight:</strong> Simulated trend data for niche services like 'Local Artisanal Coffee App' indicates a gradual but consistent increase in interest, particularly in regions like Assam and other Tier-2 cities. This highlights a potential shift towards consumer preference for specialized, localized offerings beyond generic large-scale platforms.</p>
+                <p><strong>Investment Implication:</strong> Early-stage investment in hyper-local startups focusing on niche markets (e.g., artisanal food, local crafts, specialized delivery) could present high-growth opportunities. These platforms may benefit from lower customer acquisition costs within their specific communities and strong local loyalty, offering a differentiated value proposition.</p>
+            </div>
+
+            <div class="insight-item">
+                <h3>3. Steady Demand for Quick Commerce Groceries (e.g., Maggi Noodles Zepto)</h3>
+                <p><strong>Insight:</strong> While direct search interest for specific grocery items combined with quick-commerce platforms (like 'Maggi Noodles Zepto') is low on Google Trends, our simulated data consistently shows a baseline interest across all regions. This reflects the steady, daily necessity-driven demand for quick and convenient grocery delivery services.</p>
+                <p><strong>Investment Implication:</strong> Investment in the quick-commerce grocery sector, particularly in its underlying infrastructure (warehousing, last-mile delivery tech), remains a stable long-term play. Platforms that can optimize operational efficiency and supply chain management in this high-volume, low-margin business will likely see sustainable growth and attract further capital.</p>
+            </div>
+
+            <div class="insight-item">
+                <h3>4. Fluctuating Interest in General Streaming Subscriptions (e.g., Tata Play DTH Subscription)</h3>
+                <p><strong>Insight:</strong> Search interest for general streaming/DTH subscriptions shows regional variations and occasional fluctuations. This could be influenced by content releases, competitive pricing, or seasonal factors. For instance, a spike might occur during major sports events or new show launches.</p>
+                <p><strong>Investment Implication:</strong> The streaming sector remains competitive. Investors should look for platforms with strong original content pipelines, diversified revenue models (e.g., ad-supported tiers), and strategic partnerships. Regional content strategies and affordable pricing tiers are key to sustained growth and subscriber retention in the diverse Indian market.</p>
+            </div>
+
+            <p class="insight-note">
+                *Note: The insights presented here are based on analyzed search interest data (Google Trends) and simulated popularity scores. For real-world investment decisions, comprehensive financial due diligence and market research are essential.*
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Final Year Project Team 2025</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
