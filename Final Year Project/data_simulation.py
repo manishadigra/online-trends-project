@@ -1,62 +1,38 @@
 import pandas as pd
 import random
-from datetime import datetime, timedelta # Added timedelta for generating past dates
+import math
+from datetime import datetime, timedelta
 
-def generate_simulated_data(fetch_date_str):
-    """
-    Generates a DataFrame of simulated weekly trends data.
+SIMULATED_PRODUCTS = [
+    {"keyword": "AI Fitness Coach App", "category": "Fitness Tech", "platform": "AppStore", "peak_day_offset": 5, "sharpness": 0.1},
+    {"keyword": "Sustainable Coffee Pods", "category": "Groceries", "platform": "Zepto", "peak_day_offset": 10, "sharpness": 0.2},
+    {"keyword": "Vintage Style Myntra", "category": "Fashion", "platform": "Myntra", "peak_day_offset": -2, "sharpness": 0.15},
+    {"keyword": "Noise Smart Ring", "category": "Electronics", "platform": "Flipkart", "peak_day_offset": 20, "sharpness": 0.08},
+    {"keyword": "Zomato Everyday Plan", "category": "Food & Dining", "platform": "Zomato", "peak_day_offset": 0, "sharpness": 0.3},
+]
+INDIAN_STATES = ["Maharashtra", "Delhi", "Karnataka", "Tamil Nadu", "Telangana", "Uttar Pradesh", "West Bengal", "Gujarat"]
+PROJECT_START_DATE = datetime.now() - timedelta(days=15)
 
-    Args:
-        fetch_date_str (str): The date for which to simulate data (e.g., 'YYYY-MM-DD').
+def get_trend_value(day_index, peak_day, sharpness, max_interest=100):
+    exponent = -sharpness * ((day_index - peak_day) ** 2)
+    if exponent < -50: return 0
+    value = max_interest * math.exp(exponent)
+    return int(value)
 
-    Returns:
-        pd.DataFrame: A DataFrame with simulated trend data.
-    """
-    simulated_products = [
-        {"keyword": "Maggi Noodles Zepto", "category": "Groceries", "platform": "Zepto"},
-        {"keyword": "Amul Milk Blinkit", "category": "Groceries", "platform": "Blinkit"},
-        {"keyword": "Britannia Biscuits Zepto", "category": "Groceries", "platform": "Zepto"},
-        {"keyword": "Local Artisanal Coffee App", "category": "Food & Beverage", "platform": "LocalApp"},
-        {"keyword": "Organic Vegetables LocalMart", "category": "Groceries", "platform": "LocalMart"},
-        {"keyword": "Subscription Box Snacks", "category": "Food & Beverage", "platform": "SubscriptionService"},
-        # Add more simulated products/services here for other categories you want to cover
-        # that might not have strong Google Trends data, ensuring diverse categories/platforms.
-    ]
-
-    # Full list of Indian states/UTs for comprehensive simulation
-    indian_states = [
-        "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
-        "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
-        "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
-        "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
-        "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal",
-        "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu",
-        "Delhi", "Jammu and Kashmir", "Ladakh", "Lakshadweep", "Puducherry"
-    ]
-
+def generate_simulated_data_for_date(target_date_str):
+    target_date = datetime.strptime(target_date_str, '%Y-%m-%d')
+    day_index = (target_date - PROJECT_START_DATE).days
     simulated_records = []
-    for product_info in simulated_products:
-        for state in indian_states:
-            # Simulate interest score (can make this more sophisticated later, e.g., higher in specific states)
-            interest = random.randint(1, 100) # Ensure no zeros for simulated data unless intended
-
-            simulated_records.append({
-                "geoName": state,
-                "keyword": product_info["keyword"],
-                "interest_score": interest,
-                "fetch_date": fetch_date_str,
-                "category": product_info["category"],
-                "platform": product_info["platform"],
-                "data_source": "Simulated"
-            })
-
+    for product in SIMULATED_PRODUCTS:
+        base_interest = get_trend_value(day_index, product['peak_day_offset'], product['sharpness'])
+        if base_interest > 1:
+            for state in INDIAN_STATES:
+                interest_with_noise = base_interest + random.randint(-5, 5)
+                final_interest = max(0, min(100, interest_with_noise))
+                if final_interest > 0:
+                    simulated_records.append({
+                        "geoName": state, "keyword": product["keyword"], "interest_score": final_interest,
+                        "fetch_date": target_date_str, "category": product["category"],
+                        "platform": product["platform"], "data_source": "Simulated"
+                    })
     return pd.DataFrame(simulated_records)
-
-if __name__ == "__main__":
-    # This block runs only if you execute data_simulation.py directly
-    # Useful for testing the simulation module independently
-    today_date = datetime.now().strftime('%Y-%m-%d')
-    sim_df = generate_simulated_data(today_date)
-    print("Sample Simulated Data:")
-    print(sim_df.head())
-    print(f"Generated {len(sim_df)} simulated records for {today_date}")

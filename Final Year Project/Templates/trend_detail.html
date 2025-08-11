@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ keyword }} - Trend Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="detail-page-container">
+        <aside class="sidebar">
+            <div class="sidebar-header"><h2>💡 Insightify</h2></div>
+            <a href="/dashboard" class="home-link">← Back to Dashboard</a>
+        </aside>
+        <main class="main-content">
+            <div id="loader" class="full-page-loader">Loading Analysis...</div>
+            <div id="content-wrapper" style="display: none;">
+                <header class="detail-header">
+                    <img id="product-image" src="" alt="Product Image" class="product-image">
+                    <div class="header-text">
+                        <h1 id="keyword-title">{{ keyword }}</h1>
+                        <div id="investment-signal" class="signal-badge"></div>
+                    </div>
+                </header>
+                <div class="detail-widgets-grid">
+                    <div class="widget"><h4>Key Metrics</h4><div id="key-metrics-container" class="key-metrics"></div></div>
+                    <div class="widget"><h4>Historical Interest</h4><div class="chart-container"><canvas id="historical-chart"></canvas></div></div>
+                </div>
+                <div class="widget"><h4>Regional Interest Breakdown</h4><div class="chart-container-large"><canvas id="regional-chart"></canvas></div></div>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/detail.js') }}"></script>
+</body>
+</html>

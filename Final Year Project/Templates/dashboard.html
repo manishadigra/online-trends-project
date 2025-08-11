@@ -1,0 +1,137 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Insightify</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>💡 Insightify</h2>
+                <span class="location-tag">IN</span>
+            </div>
+            <div class="filters">
+                <h3>FILTERS</h3>
+                <div class="filter-group">
+                    <label for="category-filter">Category</label>
+                    <select id="category-filter"><option value="">All Categories</option></select>
+                </div>
+                <div class="filter-group">
+                    <label for="platform-filter">Platform</label>
+                    <select id="platform-filter"><option value="">All Platforms</option></select>
+                </div>
+            </div>
+             <a href="/" class="home-link">← Logout</a>
+        </aside>
+        <main class="main-content">
+            <header class="main-header-dash"><h1>Dashboard Overview</h1><p>Analyze real-time consumer interest data.</p></header>
+            <div class="widgets-grid">
+                <div class="widget"><h4>Top Trending Keywords</h4><ul id="top-keywords-list"></ul></div>
+                <div class="widget">
+                    <h4>Comparative Interest</h4>
+                    <div class="chart-container"><canvas id="historical-chart"></canvas></div>
+                    <p id="chart-placeholder">Select 2-3 keywords from the table to compare them</p>
+                </div>
+            </div>
+            <div class="table-widget">
+                <div class="table-header">
+                    <h4>Detailed Trend Data</h4>
+                    <button id="compare-btn" class="btn btn-primary" disabled>Compare Selected</button>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="checkbox-col"></th>
+                                <th>KEYWORD</th>
+                                <th>CATEGORY</th>
+                                <th>PLATFORM</th>
+                                <th>INTEREST SCORE</th>
+                                <th>REGION</th>
+                            </tr>
+                        </thead>
+                        <tbody id="detailed-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Insightify</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>💡 Insightify</h2>
+                <span class="location-tag">IN</span>
+            </div>
+            <div class="filters">
+                <h3>FILTERS</h3>
+                <div class="filter-group">
+                    <label for="category-filter">Category</label>
+                    <select id="category-filter"><option value="">All Categories</option></select>
+                </div>
+                <div class="filter-group">
+                    <label for="platform-filter">Platform</label>
+                    <select id="platform-filter"><option value="">All Platforms</option></select>
+                </div>
+            </div>
+             <a href="/" class="home-link">← Logout</a>
+        </aside>
+        <main class="main-content">
+            <header class="main-header-dash"><h1>Dashboard Overview</h1><p>Analyze real-time consumer interest data.</p></header>
+            <div class="widgets-grid">
+                <div class="widget"><h4>Top Trending Keywords</h4><ul id="top-keywords-list"></ul></div>
+                <div class="widget">
+                    <h4>Comparative Interest</h4>
+                    <div class="chart-container"><canvas id="historical-chart"></canvas></div>
+                    <p id="chart-placeholder">Select 2-5 keywords from the table to compare them</p>
+                </div>
+            </div>
+            <div class="table-widget">
+                <div class="table-header">
+                    <h4>Detailed Trend Data</h4>
+                    <button id="compare-btn" class="btn btn-primary" disabled>Compare Selected</button>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="checkbox-col"></th>
+                                <th>KEYWORD</th>
+                                <th>CATEGORY</th>
+                                <th>PLATFORM</th>
+                                <th>INTEREST SCORE</th>
+                                <th>REGION</th>
+                            </tr>
+                        </thead>
+                        <tbody id="detailed-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarketLens - Customer Insights & Investment Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="page-container landing">
+        <header class="main-header">
+            <div class="logo">📈 MarketLens</div>
+            <nav class="main-nav">
+                <a href="/">Home</a>
+                <a href="#features">Features</a>
+                <a href="/login" class="btn btn-secondary">Login</a>
+                <a href="/dashboard" class="btn btn-primary">Go to Dashboard</a>
+            </nav>
+        </header>
+        <main>
+            <section class="hero">
+                <h1>Data-Driven Insights for a Competitive Edge</h1>
+                <p>Analyze consumer behavior and investment potential across major online platforms in India.</p>
+            </section>
+
+            <section class="live-trends-section">
+                <h2>🔥 What's Trending Now</h2>
+                <div class="live-trends-grid" id="live-trends-container">
+                    <div class="placeholder-card">Loading Trends...</div>
+                </div>
+            </section>
+            <section id="features" class="features-section">
+                <h2>Everything You Need to Analyze the Market</h2>
+                <div class="features-grid">
+                    <div class="feature-card"><h3>Real-Time Trend Data</h3><p>Leverage dynamic data to see what consumers are searching for right now.</p></div>
+                    <div class="feature-card"><h3>Competitive Analysis</h3><p>Analyze trends by platform to understand the digital landscape.</p></div>
+                    <div class="feature-card"><h3>Investment Opportunities</h3><p>Identify products with growing interest and long-term potential.</p></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/landing.js') }}"></script>
+</body>
+</html>
